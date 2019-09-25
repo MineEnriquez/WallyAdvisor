@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_and_reg_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .mybody {
+            background-image: url("{% static 'login_and_reg_app/img/NinjaPurple.png' %}");
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <title>User Login</title>
+</head>
+
+<body class="mybody">
+    <div class="wrapper">
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="sidebyside">
+                
+            <h1>Registration</h1>
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <table class="table table-borderless ">
+                    <tr>
+                        <td>First Name</td>
+                        <td><input type="text" name="first_name"></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td><input type="text" name="last_name"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="email" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td>Confirm Password</td>
+                        <td><input type="password" name="conf_password"></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Register" class=" btn btn-primary btn-sm floatcenter">
+            </form>
+        </div>
+        <div class="sidebyside top">
+            <h1>Login</h1>
+            <form action="/validate_login" method="POST">
+                {% csrf_token %}
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="email" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password"></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Log In" class=" btn btn-primary btn-sm floatcenter">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

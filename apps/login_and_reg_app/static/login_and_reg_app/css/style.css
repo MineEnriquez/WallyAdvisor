@@ -1,0 +1,73 @@
+.fixedTopRight{
+    float: right;
+    vertical-align: top;
+    }
+    
+    .wrapper {
+        width: 900px;
+        margin: 50px auto;
+        padding: 30px;
+        background: whitesmoke;
+        border: 5px solid lightgrey;
+        opacity:0.8;
+    }
+    
+    .accessible {
+    text-decoration: underline;
+    }
+    
+    .greentext {
+        color: green;
+    }
+    .tablegrid {
+        width: 350px;
+        height: 400px;
+        margin: 5px;
+        padding: 5px;
+        overflow: scroll;
+    }
+    
+    .dropdown {
+        margin: 10px 10px;
+        height: 40px;
+    }
+    
+    .sidebyside {
+        display: inline-block;
+    }
+    .top {
+        vertical-align: top;    
+    }
+    
+    .floatcenter{
+        margin: 20px 40%;
+    }
+    .centered {
+        width: 400px;
+        margin: 10px auto;
+        padding: 10px;
+    }
+    
+    .right{
+        float: right;
+        margin-right: 20px;
+    }
+    .recordinfo, .bookinfo {
+        width: 90%;
+        margin: 50px auto;
+        padding: 10px;  
+        text-align: left;
+        vertical-align: top;
+    }
+    
+    .textarea {
+        height: 200px; 
+    }
+    .sidetoside {
+        min-width: 90%;
+        overflow: scroll;
+    }
+    .LabelLetters{
+        font-size: larger;
+        font-weight: 600;
+    }
