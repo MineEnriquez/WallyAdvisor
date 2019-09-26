@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'apps.login_and_reg_app',
+    'apps.wally_trips',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

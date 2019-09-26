@@ -4,7 +4,7 @@
     }
     
     .wrapper {
-        width: 900px;
+        width: 1000px;
         margin: 50px auto;
         padding: 30px;
         background: whitesmoke;
@@ -15,10 +15,7 @@
     .accessible {
     text-decoration: underline;
     }
-    .lightbordered{
-        border: lightgray solid 3px;
-        padding: 20px;
-    }
+    
     .greentext {
         color: green;
     }
@@ -29,7 +26,13 @@
         padding: 5px;
         overflow: scroll;
     }
-    
+    .contentArea{
+        padding: 20px;
+        border: lightgray solid 3px;
+    }
+    .mainContent {
+        width: 500px;
+    }
     .dropdown {
         margin: 10px 10px;
         height: 40px;
@@ -37,11 +40,11 @@
     
     .sidebyside {
         display: inline-block;
-        padding: 20px;
     }
     .top {
         vertical-align: top;    
     }
+    
     .floatcenter{
         margin: 20px 40%;
     }

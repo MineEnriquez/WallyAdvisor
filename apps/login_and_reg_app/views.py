@@ -30,10 +30,11 @@ def register(request):
             password = request.POST['password']
             pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())  # create the hash
             print(pw_hash)
-            us = User.objects.create(last_name=request.POST['last_name'], first_name=request.POST['first_name'], email=request.POST['email'], password_hash=pw_hash)
+            user = User.objects.create(last_name=request.POST['last_name'], first_name=request.POST['first_name'], email=request.POST['email'], password_hash=pw_hash)
             #----- MODIFY NEXT LINE TO REUSE -----
-            request.session['current_user']= us.email
-            request.session['user']=us.first_name
+            request.session['current_user']= user.email
+            request.session['user']=user.first_name
+            request.session['user_id'] = user.id
             return redirect("/success")  # never render on a post, always redirect!
         return redirect('/register')
 
@@ -56,6 +57,7 @@ def validate_login(request):
                 print("password match")
                 request.session['current_user']=user.email
                 request.session['user']=user.first_name
+                request.session['user_id'] = user.id
                 return redirect("/success") 
             else:
                 print("failed password")

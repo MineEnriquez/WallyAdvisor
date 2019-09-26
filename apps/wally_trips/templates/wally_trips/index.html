@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wally_trips/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .mybody {
+            background-image: url("{% static 'login_and_reg_app/img/capture.png' %}");
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .geometry {
+            background-image: url("{% static 'login_and_reg_app/img/geometry.png' %}");
+        }
+    </style>
+</head>
+<!--                            WALLY PAGE                                            -->
+
+<body class="mybody">
+    <div class="wrapper">
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <div class="p-2 bd-highlight">
+                <form action="/trips/create" method="GET">
+                    <input class="btn btn-primary" type="submit" value="Create a new trip">
+                </form>
+            </div>
+            <div class="p-2 bd-highlight"><a href="/logout" class="accessible">Log Out</a></div>
+        </div>
+        <h2>Hello {{request.session.user}}!!</h2>
+        <h4>Here is your summary of planned trips:</h4>
+        <div class="d-flex justify-content-around">
+            <div class="contentArea">
+                <form action="/request_weather" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Check Weather">
+                </form>
+                <div>
+
+                </div>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <th>
+                            Weather for: {{cityname}}
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{w.main}}:<br>{{w.description}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <form action="/request_weather" method="POST"></form>
+            </div>
+            <div class="contentArea mainContent">
+                <div class="wrapperXXX">
+                    <h4>Your trips:</h4>
+                    <table class="table table-bordered table-striped sidetoside ">
+                        <thead class="thead-dark">
+                            <th>Destination</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Plan</th>
+                            <th>Actions</th>
+                        </thead>
+                        <tbody>
+                            {% for trip in all_user_trips%}
+                            <tr>
+                                <td><a href="/trips/{{trip.id}}" class="accessible">{{trip.destination}}</a></td>
+                                <td>{{trip.start_date | date:'F d, Y'}}
+                                <td>{{trip.end_date | date:'F d, Y'}}
+                                <td>{{trip.plan}}</td>
+                                </td>
+                                <td><a href="/trips/remove/{{trip.id}}" class="accessible">Remove</a> | <a
+                                        class="accessible" href="/trips/edit/{{trip.id}}">Edit</a> </a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <h4>Other people's trips:</h4>
+                    <table class="table table-bordered table-striped sidetoside ">
+                        <thead class="thead-dark">
+                            <th>Destination</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Plan</th>
+                            <th>Actions</th>
+                        </thead>
+                        <tbody>
+                            {% for trip in all_other_trips%}
+                            <tr>
+                                <td><a href="/trips/{{trip.id}}" class="accessible">{{trip.destination}}</a></td>
+                                <td>{{trip.start_date | date:'F d, Y'}}
+                                <td>{{trip.end_date | date:'F d, Y'}}
+                                <td>{{trip.plan}}</td>
+                                </td>
+                                <td><a href="/trips/join/{{trip.id}}" class="accessible">Join</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+            <div class="contentArea">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>
+                            Criminal Activity
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>police reported robery at gas station</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="" async defer></script>
+</body>
+
+</html>
