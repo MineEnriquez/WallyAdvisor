@@ -20,12 +20,14 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .mybody {
-            background-image: url("{% static 'login_and_reg_app/img/capture.png' %}");
+            /* background-image: url("{% static 'login_and_reg_app/img/capture.png' %}"); */
+            background-image: url("https://www.nasa.gov/specials/blackmarble/2016/globalmaps/BlackMarble_2016_01deg.jpg");
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .geometry {
             background-image: url("{% static 'login_and_reg_app/img/geometry.png' %}");
+            
         }
     </style>
 </head>
@@ -45,14 +47,6 @@
         <h4>Here is your summary of planned trips:</h4>
         <div class="d-flex justify-content-around">
             <div class="contentArea">
-                <form action="/request_weather" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" value="Check Weather">
-                </form>
-                <div>
-
-                </div>
-
                 <table class="table table-bordered">
                     <thead>
                         <th>
@@ -87,8 +81,11 @@
                                 <td>{{trip.end_date | date:'F d, Y'}}
                                 <td>{{trip.plan}}</td>
                                 </td>
-                                <td><a href="/trips/remove/{{trip.id}}" class="accessible">Remove</a> | <a
-                                        class="accessible" href="/trips/edit/{{trip.id}}">Edit</a> </a></td>
+                                <td><a href="/trips/remove/{{trip.id}}" class="accessible">Remove</a> | 
+                                    <a href="/trips/edit/{{trip.id}}" class="accessible">Edit</a>  
+                                    <a href="/trips/weather/{{trip.destination}}" class="accessible">Check weather</a>  
+                                </td>
+
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -142,7 +139,6 @@
     </div>
 
 
-    <script src="" async defer></script>
 </body>
 
 </html>
