@@ -12,10 +12,10 @@ def wally_index(request):
         return render(request, "wally_trips/index.html")
 
 
-def read_weather(request):
+def trip_weather(request):
     url = "https://community-open-weather-map.p.rapidapi.com/weather"
-    # querystring = {"callback":"test","id":"2172797","units":"\"metric\" or \"imperial\"","mode":"xml, html","q":"London,uk"}
-    querystring = {"q": "London,uk"}
+    trip = Trips.objects.get(id=request.POST['trip_id'])
+    querystring = {"q": trip.destination}
     headers = {
         "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
         "x-rapidapi-key": "16183f2d8dmshfc400b5f552be7ap142362jsnc31c7e278a45",
@@ -76,39 +76,18 @@ def dashboard_render(request):
     context = {"all_user_trips": all_user_trips, "all_other_trips": all_other_trips}
     return render(request, "wally_trips/index.html", context)
 
-def trash(request):
-    print(" ")
-# def read_weather(request):
-#     cities = ["London,uk", "Porto,pt", "Paris,fr"]
-#     weather_dict = {}
-#     for city in cities:
-#         response = requests.get(
-#           "https://community-open-weather-map.p.rapidapi.com/forecast?q="+city,
-#           headers={
-#           "X-RapidAPI-Host": "community-open-weather-map.p.rapidapi.com",
-#           "X-RapidAPI-Key": "16183f2d8dmshfc400b5f552be7ap142362jsnc31c7e278a45"
-#             },)
-#         weather_dict[city] = response.json()
-#     d = weather_dict['Paris,fr']
 
-#     # for e in d:
-#     #     print (e)
-#     # cod
-#     # message
-#     # cnt
-#     # list
-#     # city
-#     print(d['city']['name'])
-#     print(d['list'])
-#     context = {
-#         'cityname': "dfasdf",
-#         "w": weather_dict['London,uk']
-#     }
-#     return render(request, "wally_trips/index.html", context)
+def view_trip(request):
+    pass
 
 
-# print(weather_info)
-# print(weather_info[0]['description'])
-# print(response_json['visibility'])
-# print(response_json['clouds'])
+def trip_edit(request):
+    pass
+
+
+def trip_update(request):
+    pass
+
+
+def trip_remove(request):
     pass
