@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wally_trips/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .mybody {
+            background-image: url("{% static 'login_and_reg_app/img/capture.png' %}");
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <title>Create</title>
+</head>
+
+<body class="mybody">
+        <!-- Header toolbar --  UPDATE!!!-->
+        <div class="universalheader">
+                <div class="sidebyside">
+                    <h3>Hello {{request.session.user}} Let's edit your trip!</h3>
+                </div>
+                <div class="sidebyside fixedTopRight">
+                    <table>
+                        <tr class="table table-borderless">
+                            </td>
+                            <td><a href="/logout" class="accessible">Log Out</a></h3>                    </tr>
+                    </table>
+                </div>
+        </div>
+    <div class="wrapper">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+
+        <form action="/trips/update/{{trip_info.id}}" method="POST">
+            {%csrf_token%}
+
+            <table class="sidetoside">
+                <tr>
+                    <td>Destination</td>
+                    <td><input type="text" name="destination" value="{{trip_info.destination}}"></td>
+                </tr>
+                <tr>
+                    <td>Start Date</td>
+                    <td><input type="date" name="start_date" value="{{start_date}}"></td>
+                </tr>
+                <tr>
+                    <td>End Date</td>
+                    <td><input type="date" name="end_date" value="{{end_date}}"> </td>
+                </tr>
+                <tr>
+                    <td>Plan</td>
+                    <td>
+                        <textarea name="plan" id="" cols="80" rows="10">{{trip_info.plan}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <p class="right">
+                        <td>
+                            <a class= "btn btn-primary" href="/dashboard">Cancel</a>
+                        </td>
+                        <td>
+                            <input class= "btn btn-primary" type="submit" value="Submit">
+                        </td>
+                    </p>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
