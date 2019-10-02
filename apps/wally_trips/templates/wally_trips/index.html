@@ -50,28 +50,34 @@
                 <table class="table table-bordered">
                     <thead>
                         <th>
-                            Weather for: {{cityname}}
+                            Weather for: <p class="greentext"> {{cityname}} </p> 
                         </th>
                     </thead>
                     <tbody>
                         <tr>
                             <td><b>{{w.main}}</b><br>{{w.description}}</td>
                         </tr>
-
-                    </tbody>
-                </table>
-                <form action="/request_weather" method="POST"></form>
-            </div>
-            <div class="contentArea mainContent">
-                <div class="wrapperXXX">
-                    <h4>Your trips:</h4>
-                    <table class="table table-bordered table-striped sidetoside ">
-                        <thead class="thead-dark">
-                            <th>Destination</th>
-                            <th>Start date</th>
-                            <th>End date</th>
-                            <th>Plan</th>
-                            <th>Actions</th>
+                        <tr>
+                            <td>Latitude: {{lat}}<br>Longitude: {{lon}}</td>
+                            </tr>
+                            <tr>
+                                <td>Clouds: <br>{{clouds}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form action="/request_weather" method="POST"></form>
+                </div>
+                <div class="contentArea mainContent">
+                    <div class="wrapperXXX">
+                        <h4>Your trips:</h4>
+                        <div class="p-2 bd-highlight"><a href="/homeview" class="accessible">Crime Charts</a></div>
+                        <table class="table table-bordered table-striped sidetoside ">
+                            <thead class="thead-dark">
+                                <th>Destination</th>
+                                <th>Start date</th>
+                                <th>End date</th>
+                                <th>Plan</th>
+                                <th>Actions</th>
                         </thead>
                         <tbody>
                             {% for trip in all_user_trips%}

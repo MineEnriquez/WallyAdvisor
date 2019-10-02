@@ -39,3 +39,9 @@ class Trips(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user_id = models.ForeignKey(User, related_name="user")
     objects = TripDataManager()
+
+class Colors(models.Model):
+    color = models.CharField(max_length=25)
+    incidents = models.IntegerField()
+    city = models.CharField(max_length=50)
+    border = models.CharField(max_length=25)

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Django charts</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wally_trips/css/style.css' %}">
+    {% include 'wally_trips/base/css.html' %}
+    {% include 'wally_trips/base/js.html' %}
+    {% include 'wally_trips/base/bootstrap_defaults.html' %}
+
+</head>
+<body class="nasa">
+        <div class="container wrapper">
+        {% block content%}
+        {% endblock content%}
+    </div>
+</body>
+</html>

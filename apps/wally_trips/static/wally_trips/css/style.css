@@ -4,12 +4,12 @@
     }
     
     .wrapper {
-        width: 80%;
+        width: 60%;
         margin: 50px auto;
         padding: 30px;
         background: whitesmoke;
         border: 5px solid lightgrey;
-        opacity:0.8;
+        opacity:0.9;
     }
     
     .accessible {
@@ -31,7 +31,7 @@
         border: lightgray solid 3px;
     }
     .mainContent {
-        width: 60%;
+        width: 50%;
     }
     .dropdown {
         margin: 10px 10px;

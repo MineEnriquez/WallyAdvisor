@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from .views import HomeView
 
 urlpatterns = [
     url(r'^$', views.wally_index),
@@ -11,4 +12,7 @@ urlpatterns = [
     url(r'^trips/update/(?P<trip_id>\d+)$', views.trip_update),
     url(r'^trips/remove/(?P<trip_id>\d+)$', views.trip_remove),
     url(r'^trips/weather/(?P<trip_id>\d+)$', views.trip_weather),
+    url(r'^homeview$', HomeView.as_view(), name='home'),
+    url(r'^api/data/$', views.get_data, name='api-data',),
+    url(r'^api/crimedata/$', views.get_crimedata, name='api-crimedata',),
 ]

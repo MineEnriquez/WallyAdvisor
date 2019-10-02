@@ -1,0 +1,47 @@
+{% extends 'wally_trips/base.html' %}
+{% block content %}
+<div class="row">
+    <h2>Criminal Activity in these areas:</h2>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <div class="col-sm-12">
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    url: "/api/data",
+                    method: "get",
+                    success: function (response) {
+                        console.log(response)
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'polarArea',
+                            data: {
+                                labels: response.city,
+                                datasets: [{
+                                    label: '# of Incidents',
+                                    data: response.incidents,
+                                    backgroundColor: response.colors,
+                                    borderColor: response.borders,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+
+                        })
+                    }
+                },
+                    "json");
+            });
+        </script>
+    </div>
+
+</div>
+{% endblock content %}
