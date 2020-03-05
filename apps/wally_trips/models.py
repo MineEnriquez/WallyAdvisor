@@ -4,15 +4,12 @@ import datetime
 import bcrypt
 import re
 
-
-
 class TripDataManager(models.Manager):
     def basic_validator(self, postData):
         errors = {}
         # Destination
         if len(postData['destination']) < 3:
             errors["Destination"] = "A trip destination must consist of at least 3 characters"
-
         if len(postData['plan']) < 3:
             errors["Plan"] = "A plan must be provided!"
         if str(postData['start_date']) == "":
@@ -20,14 +17,6 @@ class TripDataManager(models.Manager):
         if str(postData['end_date']) == "":
             errors["End date"] = "End date should not be empty."
         return errors
-
-# class Trips(models.Model):
-#     destination = models.CharField(max_length=50)
-#     zipcode = models.CharField(max_length=50)
-#     # user = models.ForeingKey(User)
-#     created_at = models.DateTimeField(auto_now=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-
 
 class Trips(models.Model):
     destination = models.CharField(max_length=100)
